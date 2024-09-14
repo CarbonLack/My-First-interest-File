@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>掷骰子游戏</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #dice-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            max-width: 340px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .dice {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            font-size: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+        #roll-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>掷骰子游戏</h1>
+    <div id="dice-container">
+        <div class="dice" id="dice1">🎲</div>
+        <div class="dice" id="dice2">🎲</div>
+        <div class="dice" id="dice3">🎲</div>
+        <div class="dice" id="dice4">🎲</div>
+        <div class="dice" id="dice5">🎲</div>
+        <div class="dice" id="dice6">🎲</div>
+    </div>
+    <button id="roll-button">掷骰子</button>
+
+    <script>
+        function rollDice() {
+            for (let i = 1; i <=6; i++) {
+                const dice = document.getElementById('dice' + i);
+                const number = Math.floor(Math.random() * 6) + 1;
+                dice.textContent = getDiceFace(number);
+            }
+        }
+
+        function getDiceFace(number) {
+            const diceFaces = {
+                1: '⚀',
+                2: '⚁',
+                3: '⚂',
+                4: '⚃',
+                5: '⚄',
+                6: '⚅'
+            };
+            return diceFaces[number];
+        }
+
+        document.getElementById('roll-button').addEventListener('click', rollDice);
+
+        // 页面加载时自动掷一次骰子
+        window.onload = rollDice;
+    </script>
+
+</body>
+</html>
